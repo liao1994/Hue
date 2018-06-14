@@ -5,7 +5,10 @@ import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuItem;
 
 import com.philips.lighting.hue.sdk.wrapper.HueLog;
 import com.philips.lighting.hue.sdk.wrapper.Persistence;
@@ -31,6 +34,7 @@ import java.util.List;
 
 public class SetupActivity extends AppCompatActivity {
 
+    Toolbar toolbar;
     private static final String TAG = "ShineMyHue.Setup";
     private Bridge bridge;
     private BridgeDiscovery bridgeDiscovery;
@@ -40,10 +44,19 @@ public class SetupActivity extends AppCompatActivity {
     }
 
     @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu, menu);
+        return super.onCreateOptionsMenu(menu);
+    }
+
+    @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_setup);
 
+        toolbar = findViewById(R.id.find_bridge_bar);
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setTitle(R.string.find_bridge);
         Persistence.setStorageLocation(getFilesDir().getAbsolutePath(),"ShineMyHue");
         HueLog.setConsoleLogLevel(HueLog.LogLevel.DEBUG, HueLog.LogComponent.ALL);
 
@@ -58,6 +71,14 @@ public class SetupActivity extends AppCompatActivity {
         //TODO remote control
 
     }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        return super.onOptionsItemSelected(item);
+        //TODO logic when search btn is clicked
+
+    }
+
     private boolean networkStateIsWifi(){
         //TODO checking outer cases needed (conmanager failed or something) dunno why sometimes returns null
         ConnectivityManager connManager = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
@@ -136,6 +157,9 @@ public class SetupActivity extends AppCompatActivity {
         public void onFinished(final List<BridgeDiscoveryResult> results, final ReturnCode returnCode) {
             // Set to null to prevent stopBridgeDiscovery from stopping it
             bridgeDiscovery = null;
+            if(returnCode == returnCode.SUCCESS){
+
+            }
 /*
             runOnUiThread(new Runnable() {
                 @Override
