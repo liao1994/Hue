@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:ProgressWheel="http://schemas.android.com/apk/res-auto"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:background="@color/colorBackground">
+
+        <com.todddavies.components.progressbar.ProgressWheel
+            android:id="@+id/pw_spinner"
+            android:layout_width="200dp"
+            android:layout_height="200dp"
+            android:layout_centerInParent="true"
+            ProgressWheel:pwBarColor="#0097D6"
+            ProgressWheel:pwBarLength="60dp"
+            ProgressWheel:pwBarWidth="5dp"
+            ProgressWheel:pwRimColor="#330097D6"
+            ProgressWheel:pwRimWidth="2dp"
+            ProgressWheel:pwTextColor="#222"
+            ProgressWheel:pwTextSize="14sp" />
+
+</RelativeLayout>

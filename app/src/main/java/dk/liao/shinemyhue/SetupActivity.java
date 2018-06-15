@@ -4,11 +4,13 @@ import android.content.Context;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.Bundle;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 
 import com.philips.lighting.hue.sdk.wrapper.HueLog;
 import com.philips.lighting.hue.sdk.wrapper.Persistence;
@@ -38,7 +40,7 @@ public class SetupActivity extends AppCompatActivity {
     private static final String TAG = "ShineMyHue.Setup";
     private Bridge bridge;
     private BridgeDiscovery bridgeDiscovery;
-
+    private AuthenticationDialog dialog;
     static {
         System.loadLibrary("huesdk");
     }
@@ -49,17 +51,17 @@ public class SetupActivity extends AppCompatActivity {
         return super.onCreateOptionsMenu(menu);
     }
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_setup);
-
         toolbar = findViewById(R.id.find_bridge_bar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setTitle(R.string.find_bridge);
         Persistence.setStorageLocation(getFilesDir().getAbsolutePath(),"ShineMyHue");
         HueLog.setConsoleLogLevel(HueLog.LogLevel.DEBUG, HueLog.LogComponent.ALL);
-
+        dialog = new AuthenticationDialog(this);
         if(networkStateIsWifi()){
             String bridgeIp = getLastUsedBridgeIp();
             if (bridgeIp == null) {
@@ -106,7 +108,6 @@ public class SetupActivity extends AppCompatActivity {
 
         bridge.connect();
 
-        //bridgeIpTextView.setText("Bridge IP: " + bridgeIp);
         //updateUI(UIState.Connecting, "Connecting to bridge...");
     }
     private BridgeStateUpdatedCallback bridgeStateUpdatedCallback = new BridgeStateUpdatedCallback() {
@@ -158,6 +159,12 @@ public class SetupActivity extends AppCompatActivity {
             // Set to null to prevent stopBridgeDiscovery from stopping it
             bridgeDiscovery = null;
             if(returnCode == returnCode.SUCCESS){
+                runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        dialog.run();
+                    }
+                });
 
             }
 /*
@@ -194,7 +201,6 @@ public class SetupActivity extends AppCompatActivity {
         @Override
         public void onConnectionEvent(BridgeConnection bridgeConnection, ConnectionEvent connectionEvent) {
             Log.i(TAG, "Connection event: " + connectionEvent);
-
             switch (connectionEvent) {
                 case LINK_BUTTON_NOT_PRESSED:
                     //updateUI(UIState.Pushlinking, "Press the link button to authenticate.");
