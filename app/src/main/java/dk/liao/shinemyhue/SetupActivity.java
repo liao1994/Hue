@@ -11,6 +11,7 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Toast;
 
 import com.philips.lighting.hue.sdk.wrapper.HueLog;
 import com.philips.lighting.hue.sdk.wrapper.Persistence;
@@ -158,31 +159,19 @@ public class SetupActivity extends AppCompatActivity {
         public void onFinished(final List<BridgeDiscoveryResult> results, final ReturnCode returnCode) {
             // Set to null to prevent stopBridgeDiscovery from stopping it
             bridgeDiscovery = null;
-            if(returnCode == returnCode.SUCCESS){
-                runOnUiThread(new Runnable() {
-                    @Override
-                    public void run() {
-                        dialog.run();
-                    }
-                });
-
-            }
-/*
             runOnUiThread(new Runnable() {
                 @Override
                 public void run() {
-                    if (returnCode == ReturnCode.SUCCESS) {
-                        bridgeDiscoveryListView.setAdapter(new BridgeDiscoveryResultAdapter(getApplicationContext(), results));
-                        bridgeDiscoveryResults = results;
-
-                        updateUI(UIState.BridgeDiscoveryResults, "Found " + results.size() + " bridge(s) in the network.");
-                    } else if (returnCode == ReturnCode.STOPPED) {
+                    if(returnCode == ReturnCode.SUCCESS){
+                        dialog.run();
+                    }else if (returnCode == ReturnCode.STOPPED) {
                         Log.i(TAG, "Bridge discovery stopped.");
+                        dialog.dismiss();
                     } else {
-                        updateUI(UIState.Idle, "Error doing bridge discovery: " + returnCode);
+                        Toast.makeText(getApplicationContext(),"Error doing bridge discovery: " + returnCode,Toast.LENGTH_SHORT).show();
                     }
                 }
-            });*/
+            });
         }
     };
     private void disconnectFromBridge() {
