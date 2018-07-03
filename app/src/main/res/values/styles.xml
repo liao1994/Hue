@@ -17,4 +17,19 @@
 
     <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
 
+    <style name="Dialog">
+        <item name="android:background">@color/colorBackground</item>
+        <item name="android:textColor">@color/colorLightBlue</item>
+    </style>
+    <style name="Dialog.Buttons" parent="Dialog">
+        <item name="android:textSize">13sp</item>
+    </style>
+    <style name="Dialog.Title" parent="Dialog">
+        <item name="android:textSize">20sp</item>
+    </style>
+    <style name="Divider">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">1sp</item>
+        <item name="android:background">@drawable/border</item>
+    </style>
 </resources>

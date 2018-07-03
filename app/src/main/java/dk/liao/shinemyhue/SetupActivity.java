@@ -1,6 +1,7 @@
 package dk.liao.shinemyhue;
 
 import android.content.Context;
+import android.content.Intent;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.Bundle;
@@ -11,6 +12,7 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
 import android.widget.Toast;
 
 import com.philips.lighting.hue.sdk.wrapper.HueLog;
@@ -62,7 +64,7 @@ public class SetupActivity extends AppCompatActivity {
         getSupportActionBar().setTitle(R.string.find_bridge);
         Persistence.setStorageLocation(getFilesDir().getAbsolutePath(),"ShineMyHue");
         HueLog.setConsoleLogLevel(HueLog.LogLevel.DEBUG, HueLog.LogComponent.ALL);
-        dialog = new AuthenticationDialog(this);
+        //dialog = new AuthenticationDialog(this);
         if(networkStateIsWifi()){
             String bridgeIp = getLastUsedBridgeIp();
             if (bridgeIp == null) {
@@ -73,6 +75,19 @@ public class SetupActivity extends AppCompatActivity {
         }
         //TODO remote control
 
+        Button mBtn = findViewById(R.id.open_light_activity);
+        mBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                openActivity();
+            }
+        });
+    }
+
+    private void openActivity(){
+        Intent i = new Intent(getApplicationContext(),LightActivity.class);
+        startActivity(i);
+        finish();
     }
 
     @Override

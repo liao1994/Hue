@@ -6,5 +6,8 @@
     <string name="authentication_required">Push Link Button On Bridge</string>
     <string name="enter_ip_btn_text">Manuel enter IP</string>
     <string name="cancel_btn_txt">Cancel</string>
+    <string name="dialog_authentication_required">Push the Hue Bridge</string>
+    <string name="cancel">Cancel</string>
+    <string name="dialog_authentication_tag">dialog_authentication</string>
 
 </resources>

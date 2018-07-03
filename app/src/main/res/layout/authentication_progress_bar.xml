@@ -16,7 +16,8 @@
             ProgressWheel:pwBarWidth="5dp"
             ProgressWheel:pwRimColor="#330097D6"
             ProgressWheel:pwRimWidth="2dp"
-            ProgressWheel:pwTextColor="#222"
+            ProgressWheel:pwTextColor="#0097D6"
             ProgressWheel:pwTextSize="14sp" />
+
 
 </RelativeLayout>
