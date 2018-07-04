@@ -15,6 +15,28 @@
         android:id="@+id/open_light_activity"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Button" />
+        android:text="Lights" />
+    <Button
+        android:id="@+id/open_room_activity"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Rooms" />
+    <Button
+        android:id="@+id/open_random_activity"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Automatic Turn On/Off light based on WIFI" />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="bottom">
+        <TextView
+            android:id="@+id/connection_mode"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="bottom"
 
+            android:background="@color/colorLightBlue"/>
+
+    </LinearLayout>
 </LinearLayout>
