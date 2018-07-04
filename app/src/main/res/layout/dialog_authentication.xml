@@ -3,7 +3,9 @@
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     android:minWidth="280dip"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:background="@color/colorBackground"
+    >
 
     <LinearLayout
         android:layout_width="fill_parent"
@@ -16,24 +18,27 @@
             style="@style/Dialog.Title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:paddingLeft="8dip"
-            android:paddingRight="8dip" />
+            android:paddingLeft="8sp"
+            android:paddingRight="8sp"
+            android:paddingTop="5sp"
+            android:paddingBottom="5sp"
+            />
 
     </LinearLayout>
 
-    <View
-        style="@style/Divider"
-        />
+    <View style="@style/Divider"
+        android:layout_marginBottom="20sp"/>
     <include
         android:id="@+id/dialog_authentication_progress_bar"
         layout="@layout/authentication_progress_bar"
          />
-    <View style="@style/Divider"/>
+    <View style="@style/Divider"
+        android:layout_marginTop="20sp"
+        />
     <LinearLayout
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:background="@color/colorBackground"
         >
 
         <Button

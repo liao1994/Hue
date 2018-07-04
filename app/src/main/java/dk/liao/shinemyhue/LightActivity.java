@@ -13,6 +13,18 @@ public class LightActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_light);
         mDialogBtn = findViewById(R.id.openDialogBtn);
+        mDialogBtn.setText("authDialog open");
+        mDialogBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                openDialog();
+            }
+
+
+        });
+
+        mDialogBtn = findViewById(R.id.openDialogBtn);
+        mDialogBtn.setText("authDialog open");
         mDialogBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
